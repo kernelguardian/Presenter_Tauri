@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "app": "tauri dev",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "tauri",
-    "app": "tauri dev"
+    "tauri": "tauri"
   },
   "dependencies": {
     "react": "^18.2.0",
