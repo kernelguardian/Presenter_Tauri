@@ -1,13 +1,16 @@
+import { Space } from '@mantine/core'
 import Playground from "./Playground"
-import StageController from "./StageController"
 import TopBar from "./TopBar"
+
 
 
 function LandingPage() {
     return (
         <div >
+            <Space h={4}></Space>
+
             <TopBar></TopBar>
-            <StageController></StageController>
+
             <Playground></Playground>
         </div>
     )
