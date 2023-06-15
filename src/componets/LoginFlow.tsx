@@ -1,27 +1,48 @@
-import React from 'react'
+import {
+    TextInput,
+    PasswordInput,
+    Checkbox,
+    Anchor,
+    Paper,
+    Title,
+    Text,
+    Container,
+    Group,
+    Button,
+    Space
+} from '@mantine/core';
 
-function LoginFlow() {
-
+export default function LoginFlow() {
     return (
-        <div className="container">
-            <h1>Welcome to Presenter</h1>
-            <form
-                className="row"
-                onSubmit={(e) => {
-                    e.preventDefault();
-                }}
+        <Container size={420} my={40}>
+            <Space h="xs" />
+
+            <Title
+                align="center"
+                sx={(theme) => ({ fontFamily: `Greycliff CF, ${theme.fontFamily}`, fontWeight: 900 })}
             >
-                <input id="email" type='email' placeholder="Enter your email"></input>
+                Welcome back!
+            </Title>
+            <Text color="dimmed" size="sm" align="center" mt={5}>
+                Do not have an account yet?{' '}
+                <Anchor size="sm" component="button">
+                    Create account
+                </Anchor>
+            </Text>
 
-                <input id="password" type='password' placeholder={"Enter your password"}></input>
-                <button>Login</button>
-                <button>Signup</button>
-
-            </form>
-
-        </div>
+            <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+                <TextInput label="Email" placeholder="you@presenter.dev" required />
+                <PasswordInput label="Password" placeholder="Your password" required mt="md" />
+                <Group position="apart" mt="lg">
+                    <Checkbox label="Remember me" />
+                    <Anchor component="button" size="sm">
+                        Forgot password?
+                    </Anchor>
+                </Group>
+                <Button fullWidth mt="xl">
+                    Sign in
+                </Button>
+            </Paper>
+        </Container>
     );
-
 }
-
-export default LoginFlow

@@ -1,16 +1,23 @@
+import { Stack, Space, Paper, Text, em } from '@mantine/core'
 import Playground from "./Playground"
-import StageController from "./StageController"
 import TopBar from "./TopBar"
 
 
+
 function LandingPage() {
-    return (
-        <div >
-            <TopBar></TopBar>
-            <StageController></StageController>
-            <Playground></Playground>
-        </div>
-    )
+	return (
+		<Stack>
+			<Paper>
+				<TopBar></TopBar>
+			</Paper>
+			<Paper>
+				<Playground></Playground>
+			</Paper>
+			<Paper withBorder radius={'md'} p={'md'}  mb={8}>
+				<Text align='justify'>Some content here</Text>
+			</Paper>
+		</Stack>
+	)
 }
 
 export default LandingPage
