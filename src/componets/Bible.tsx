@@ -1,8 +1,9 @@
-import { Chip } from '@mantine/core';
-import { Group, Grid, Skeleton, Container, Button, Space, Flex, ScrollArea, Table } from '@mantine/core';
-
+import { Group, Grid, Text, Input, Paper, Space, Flex, ScrollArea, Table, Chip, Divider } from '@mantine/core';
+import { useState } from 'react';
+import { IconSearch } from '@tabler/icons-react';
 
 function Bible() {
+
     const elements = [
         { position: 1, mass: "അവൻ, ആറ്റരികത്തു നട്ടിരിക്കുന്നതും തക്കകാലത്തു ഫലം കായ്ക്കുന്നതും ഇലവാടാത്തതുമായ വൃക്ഷംപോലെ ഇരിക്കും; അവൻ ചെയ്യുന്നതൊക്കെയും സാധിക്കും.", symbol: 'same verse in another version/language', name: 'A verse' },
         { position: 2, mass: "some other verse with long content അവൻ, ആറ്റരികത്തു നട്ടിരിക്കുന്നതും തക്കകാലത്തു ഫലം കായ്ക്കുന്നതും ഇലവാടാത്തതുമായ വൃക്ഷംപോലെ ഇരിക്കും; അവൻ ചെയ്യുന്നതൊക്കെയും സാധിക്കും. huh", symbol: 'some other verse with long content ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- huh', name: 'some other verse with long content ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- huh' },
@@ -24,66 +25,85 @@ function Bible() {
             <td>{element.mass}</td>
         </tr>
     ));
+    const count = 66;
+
 
     return (
-        <Container>
+        <>
 
-            {/* Bible Version Picker */}
-            <Grid grow >
-                <p>Bible</p>
-                <Space w="xl"></Space>
-                <Flex
+            {/* Bible TopBar */}
 
+            <Grid columns={24}>
+                <Grid.Col span={4}>
+                    <Text
+                        variant="gradient"
+                        gradient={{ from: 'indigo', to: 'cyan', deg: 45 }}
+                        sx={{ fontFamily: 'Greycliff CF, sans-serif' }}
+                        ta="left"
+                        fz="xl"
+                        fw={700}
+                        pl={12}
+                    >
+                        Bible
+                    </Text>
 
-                    gap="sm"
-                    justify="center"
-                    align="center"
-                    direction="row"
-                    wrap="wrap"
-                >
+                </Grid.Col>
+
+                <Grid.Col span={12}>
                     <Chip.Group multiple>
-                        <Group position="center" mt="md">
-                            <Chip value="1">AMP</Chip>
-                            <Chip value="2">BSI</Chip>
-                            <Chip value="3">NKJV</Chip>
+                        <Group position="center" >
+                            <Chip value="amp">AMP</Chip>
+                            <Chip value="bsi">BSI</Chip>
+                            <Chip value="nkjv">NKJV</Chip>
                         </Group>
                     </Chip.Group>
-                </Flex>
+                </Grid.Col>
+
+                <Grid.Col span={8}>
+                    <Input
+                        icon={<IconSearch />}
+                        placeholder="Quick Search"
+                    />
+
+                </Grid.Col>
             </Grid>
-            <Space h={16}></Space>
+
+
+            <Divider my="sm" variant="dotted" />
+
+
+
+
 
             {/* Book Selector */}
-            <Chip.Group>
-                <Group spacing={"xs"} position='left'>
-                    <Chip color="orange" variant="filled" radius="xs" value="1">Genesis</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="2">Exodus</Chip>
-                    <Chip color="orange" variant="filled" radius="xs" value="5">Psalms</Chip>
+            <ScrollArea h={180}>
+                <Chip.Group>
+                    <Group spacing={"xs"} position='left' >
+
+                        {(() => {
+                            const arr = [];
+                            for (let i = 0; i < count; i++) {
+                                arr.push(
+                                    <Chip color="orange" variant="filled" radius="xs" value={i.toString()}>Bo{i} </Chip>
+                                );
+                            }
+                            return arr;
+                        })()}
 
 
-                </Group>
-            </Chip.Group>
 
-            <Space h="xs" />
+                    </Group>
+                </Chip.Group>
+
+            </ScrollArea>
+
+            <Space h={4} />
 
 
-            {/* Selector Scroller */}
-            <Grid columns={24} mt={6}>
+
+
+            {/* Verse Selector/Scroller */}
+            <Grid columns={24} mt={2}>
                 {/* Book Number Selector */}
                 <Grid.Col span={2}>
 
@@ -95,14 +115,27 @@ function Bible() {
                         direction="column"
                         wrap="wrap"
                     >
-                        <Chip.Group>
-                            <Group spacing={"xs"} position='left'>
-                                <Chip color="orange" variant="filled" radius="xs" value="1">1</Chip>
-                                <Chip color="orange" variant="filled" radius="xs" value="2">2</Chip>
-                                <Chip color="orange" variant="filled" radius="xs" value="3">3</Chip>
-                                <Chip color="orange" variant="filled" radius="xs" value="4">5</Chip>
-                            </Group>
-                        </Chip.Group>
+                        {/* Book Selector */}
+                        <ScrollArea h={800}>
+                            <Chip.Group>
+                                <Group spacing={"xs"} position='left' >
+
+                                    {(() => {
+                                        const arr = [];
+                                        for (let i = 0; i < 40; i++) {
+                                            arr.push(
+                                                <Chip color="orange" variant="filled" radius="sm" value={i.toString()}>{i} </Chip>
+                                            );
+                                        }
+                                        return arr;
+                                    })()}
+
+
+
+                                </Group>
+                            </Chip.Group>
+
+                        </ScrollArea>
 
                     </Flex>
                 </Grid.Col>
@@ -180,8 +213,9 @@ function Bible() {
                 {/* Table */}
                 <Grid.Col span={20}>
 
-                    <ScrollArea >
-                        <Table striped highlightOnHover>
+                    <ScrollArea h={800}>
+                        <Table striped highlightOnHover withBorder={true}
+                        >
                             {/* <thead>{ths}</thead> */}
                             <tbody>{rows}</tbody>
 
@@ -189,10 +223,10 @@ function Bible() {
                     </ScrollArea>
                 </Grid.Col>
 
-            </Grid>
+            </Grid >
 
 
-        </Container >
+        </ >
     )
 }
 

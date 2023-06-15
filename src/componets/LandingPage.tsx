@@ -12,6 +12,7 @@ function LandingPage() {
             <TopBar></TopBar>
 
             <Playground></Playground>
+
         </div>
     )
 }

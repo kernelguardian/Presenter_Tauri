@@ -5,13 +5,13 @@ function DisplayManager() {
         <Chip.Group multiple >
             <Group position="center" >
 
-                <Chip defaultChecked color="green" variant="filled" size="sm"
+                <Chip color="green" variant="filled" size="sm"
                     radius="sm" value="d1">Display 1</Chip>
 
-                <Chip defaultChecked color="green" variant="filled" size="sm"
+                <Chip color="green" variant="filled" size="sm"
                     radius="sm" value="d2">Display 2</Chip>
 
-                <Chip defaultChecked color="green" variant="filled" size="sm"
+                <Chip color="green" variant="filled" size="sm"
                     radius="sm" value="d3">Display 3</Chip>
 
             </Group>
